@@ -2,6 +2,9 @@
   "name": "classtimes-frontend-razzle",
   "version": "4.0.1-canary.10",
   "license": "MIT",
+  "engines": {
+    "node": ">=15.11.0"
+  },
   "scripts": {
     "start": "razzle start",
     "build": "razzle build",
