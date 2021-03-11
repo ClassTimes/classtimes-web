@@ -21,6 +21,7 @@
     "graphology-components": "^1.1.0",
     "graphql": "^15.5.0",
     "interval-tree-type": "^1.0.1",
+    "razzle-heroku": "^3.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -28,6 +29,7 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@types/express": "^4.17.11",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
     "babel-plugin-styled-components": "^1.12.0",

@@ -7,6 +7,7 @@ module.exports = {
   //   mediaPrefix: 'static/media',
   //   browserslist: undefined, // or what your apps package.json says
   // },
+  modify: require("razzle-heroku"),
   experimental: {
     newBabel: true,
     newExternals: true,

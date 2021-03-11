@@ -16,9 +16,11 @@ if (module.hot) {
 
 const port = process.env.PORT || 3000
 
+console.log("env info:", process.env.PORT)
+
 export default express()
   .use((req, res) => app.handle(req, res))
-  .listen(port, function (err) {
+  .listen(port, "0.0.0.0", function (err) {
     if (err) {
       console.error(err)
       return
