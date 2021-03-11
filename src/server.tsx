@@ -2,6 +2,7 @@ import * as React from "react"
 import { StaticRouter } from "react-router-dom"
 import { renderToString } from "react-dom/server"
 import express from "express"
+import { ServerStyleSheet } from "styled-components"
 
 import App from "./App"
 
@@ -28,12 +29,21 @@ const jsScriptTagsFromAssets = (assets, entrypoint, extra = "") => {
 }
 
 export function renderApp(req, res) {
+  // Create the server side style sheet
+  const sheet = new ServerStyleSheet()
   const context = {}
+
+  // When the app is rendered collect the styles that are used inside it
   const markup = renderToString(
-    <StaticRouter {...{ context }} location={req.url}>
-      <App />
-    </StaticRouter>
+    sheet.collectStyles(
+      <StaticRouter {...{ context }} location={req.url}>
+        <App />
+      </StaticRouter>
+    )
   )
+
+  // Generate all the style tags so they can be rendered into the page
+  const styleTags = sheet.getStyleTags()
 
   let html, redirectUrl
   if (context.url) {
@@ -47,6 +57,8 @@ export function renderApp(req, res) {
         <title>ClassTimes</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${cssLinksFromAssets(assets, "client")}
+        <!-- Render the style tags gathered from the components into the DOM -->
+        ${styleTags}  
     </head>
     <body>
         <div id="root">${markup}</div>
