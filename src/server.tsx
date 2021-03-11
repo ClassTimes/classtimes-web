@@ -28,19 +28,18 @@ const jsScriptTagsFromAssets = (assets, entrypoint, extra = "") => {
 }
 
 export function renderApp(req, res) {
-  {
-    const context = {}
-    const markup = renderToString(
-      <StaticRouter {...{ context }} location={req.url}>
-        <App />
-      </StaticRouter>
-    )
+  const context = {}
+  const markup = renderToString(
+    <StaticRouter {...{ context }} location={req.url}>
+      <App />
+    </StaticRouter>
+  )
 
-    let html, redirectUrl
-    if (context.url) {
-      redirectUrl = context.url
-    } else {
-      html = `<!doctype html>
+  let html, redirectUrl
+  if (context.url) {
+    redirectUrl = context.url
+  } else {
+    html = `<!doctype html>
     <html lang="">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -54,12 +53,11 @@ export function renderApp(req, res) {
         ${jsScriptTagsFromAssets(assets, "client", " defer crossorigin")}
     </body>
 </html>`
-    }
+  }
 
-    return {
-      redirectUrl,
-      html,
-    }
+  return {
+    redirectUrl,
+    html,
   }
 }
 
