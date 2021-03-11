@@ -22,3 +22,7 @@ chrome-user-data
 *.
 
 .module-cache
+
+cache
+dist
+node_modules
