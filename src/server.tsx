@@ -27,23 +27,20 @@ const jsScriptTagsFromAssets = (assets, entrypoint, extra = "") => {
     : ""
 }
 
-const server = express()
-server
-  .disable("x-powered-by")
-  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
-  .get("/*", (req, res) => {
+export function renderApp(req, res) {
+  {
     const context = {}
     const markup = renderToString(
-      <StaticRouter context={context} location={req.url}>
+      <StaticRouter {...{ context }} location={req.url}>
         <App />
       </StaticRouter>
     )
 
+    let html, redirectUrl
     if (context.url) {
-      res.redirect(context.url)
+      redirectUrl = context.url
     } else {
-      res.status(200).send(
-        `<!doctype html>
+      html = `<!doctype html>
     <html lang="">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -57,7 +54,25 @@ server
         ${jsScriptTagsFromAssets(assets, "client", " defer crossorigin")}
     </body>
 </html>`
-      )
+    }
+
+    return {
+      redirectUrl,
+      html,
+    }
+  }
+}
+
+const server = express()
+server
+  .disable("x-powered-by")
+  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  .get("/*", (req, res) => {
+    const { html, redirectUrl } = renderApp(req, res)
+    if (redirectUrl) {
+      res.redirect(redirectUrl)
+    } else {
+      res.status(200).send(html)
     }
   })
 
