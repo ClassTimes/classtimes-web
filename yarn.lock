@@ -2145,10 +2145,10 @@ babel-preset-jest@^26.3.0, babel-preset-jest@^26.6.2:
     babel-plugin-jest-hoist "^26.6.2"
     babel-preset-current-node-syntax "^1.0.0"
 
-babel-preset-razzle@4.0.1-canary.10:
-  version "4.0.1-canary.10"
-  resolved "https://registry.yarnpkg.com/babel-preset-razzle/-/babel-preset-razzle-4.0.1-canary.10.tgz#c17b423941c031848b67eb945e8309c5f9ba00d9"
-  integrity sha512-ESLOB2qUp0frXKszDZFOwepwDyQnSnqskveLS7qhcbSMVqVETwKY6h6W04YzqMK/xkAXLecRkR3mSZgMU84JLw==
+babel-preset-razzle@4.0.1-canary.11:
+  version "4.0.1-canary.11"
+  resolved "https://registry.yarnpkg.com/babel-preset-razzle/-/babel-preset-razzle-4.0.1-canary.11.tgz#fe99d82ddfd9afa81d57fa0255f81b3ea27455a8"
+  integrity sha512-jKyYR81VOetSSi+DM16dvMG1zpntRIiGCbh3UX6wYbM/FTMcMvAXYmK03lBFb+RF70oiALScdmnYpkKSOezQrQ==
   dependencies:
     "@babel/core" "7.11.1"
     "@babel/plugin-proposal-class-properties" "^7.8.3"
@@ -3508,7 +3508,7 @@ error-stack-parser@^2.0.6:
   dependencies:
     stackframe "^1.1.1"
 
-es-abstract@^1.17.2, es-abstract@^1.18.0-next.1, es-abstract@^1.18.0-next.2:
+es-abstract@^1.17.2, es-abstract@^1.18.0-next.2:
   version "1.18.0"
   resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.18.0.tgz#ab80b359eecb7ede4c298000390bc5ac3ec7b5a4"
   integrity sha512-LJzK7MrQa8TS0ja2w3YNLzUgJCGPdPOV1yVvezjNnS89D+VR08+Szt2mz3YB2Dck/+w5tfIq/RoUAFqJJGM2yw==
@@ -4939,11 +4939,6 @@ is-glob@^4.0.0, is-glob@^4.0.1, is-glob@~4.0.1:
   dependencies:
     is-extglob "^2.1.1"
 
-is-heroku@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/is-heroku/-/is-heroku-1.0.1.tgz#46715fcd9d5ce55a9f254e6b9816735ebab38140"
-  integrity sha1-RnFfzZ1c5VqfJU5rmBZzXrqzgUA=
-
 is-negative-zero@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/is-negative-zero/-/is-negative-zero-2.0.1.tgz#3de746c18dda2319241a53675908d8f766f11c24"
@@ -6356,16 +6351,6 @@ object.assign@^4.1.0, object.assign@^4.1.2:
     has-symbols "^1.0.1"
     object-keys "^1.1.1"
 
-object.entries@^1.0.4:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/object.entries/-/object.entries-1.1.3.tgz#c601c7f168b62374541a07ddbd3e2d5e4f7711a6"
-  integrity sha512-ym7h7OZebNS96hn5IJeyUmaWhaSM4SVtAPPfNLQEI2MYWCO2egsITb9nab2+i/Pwibx+R0mtn+ltKJXRSeTMGg==
-  dependencies:
-    call-bind "^1.0.0"
-    define-properties "^1.1.3"
-    es-abstract "^1.18.0-next.1"
-    has "^1.0.3"
-
 object.getownpropertydescriptors@^2.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/object.getownpropertydescriptors/-/object.getownpropertydescriptors-2.1.2.tgz#1bd63aeacf0d5d2d2f31b5e393b03a7c601a23f7"
@@ -7280,10 +7265,10 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-razzle-dev-utils@^4.0.1-canary.10:
-  version "4.0.1-canary.10"
-  resolved "https://registry.yarnpkg.com/razzle-dev-utils/-/razzle-dev-utils-4.0.1-canary.10.tgz#044052e009db51af9b59566d8531e9a7347137c2"
-  integrity sha512-SmXz7ZHOJ4TR/xkU4jSt98jGhbme2K/ha3TYzLAFRIu1npaUnS5pwioN3Zryab/KCJX6kxrfYc6d5msnnNiUNA==
+razzle-dev-utils@^4.0.1-canary.11:
+  version "4.0.1-canary.11"
+  resolved "https://registry.yarnpkg.com/razzle-dev-utils/-/razzle-dev-utils-4.0.1-canary.11.tgz#c418d160a23de38738cf914a9588674b67ceec0a"
+  integrity sha512-kVI/UyCl2GP+luFByiqhD54C/6cuVr4mzT2DnkE7SFzeOFaSIHVNrhIuQi3AU161pXeTwnTAzy6envKwNmpGkA==
   dependencies:
     "@babel/code-frame" "^7.8.3"
     chalk "^4.1.0"
@@ -7297,23 +7282,15 @@ razzle-dev-utils@^4.0.1-canary.10:
     sockjs-client "~1.4.0"
     strip-ansi "6.0.0"
 
-razzle-heroku@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/razzle-heroku/-/razzle-heroku-3.0.0.tgz#18a4e0f077685520bcca94f546b3ababf4d5e3d5"
-  integrity sha512-n61kuoKw9NlMNSwgIR/3PD3XQzWkpCQPrALOk9wcAEmHbMf7zbkc4mTBe//gRu2brCZbdgJ3d75JCQK6hZzlkA==
-  dependencies:
-    is-heroku "^1.0.1"
-    object.entries "^1.0.4"
+razzle-start-server-webpack-plugin@4.0.1-canary.11:
+  version "4.0.1-canary.11"
+  resolved "https://registry.yarnpkg.com/razzle-start-server-webpack-plugin/-/razzle-start-server-webpack-plugin-4.0.1-canary.11.tgz#ada550dbaaed58621c2f418ad7f3376cc43b7672"
+  integrity sha512-cKrQj7sTA+TJxHLGMey0wQJ6F/2GiH37NJh91qMRIWRzT+SkrlmNblqa+CQI+4UHzwT3tbs8FEv0/Sep/a4gYw==
 
-razzle-start-server-webpack-plugin@4.0.1-canary.10:
-  version "4.0.1-canary.10"
-  resolved "https://registry.yarnpkg.com/razzle-start-server-webpack-plugin/-/razzle-start-server-webpack-plugin-4.0.1-canary.10.tgz#dcb0e9eee33483b81e006707d11f892488239b81"
-  integrity sha512-SrxNDwsI0RtdpDQS2Thf1BHNg6wtVe93vI+ZFMylA5AO8h4lhP86Ts4tSM+Jq9lZ8gha+/TVt1RaFvCmILVLgw==
-
-razzle@^4.0.1-canary.10:
-  version "4.0.1-canary.10"
-  resolved "https://registry.yarnpkg.com/razzle/-/razzle-4.0.1-canary.10.tgz#91cb0b2d70d37397d2073b33c54e263504a9a5be"
-  integrity sha512-2UAf3McNf9JlMkrMybbrS8JXcAxdUTqkEjHIljmjL9xb9bzeXEvRT62oiXJOmsTFdyfiC978aHeAZNOOeyBKZw==
+razzle@^4.0.1-canary.11:
+  version "4.0.1-canary.11"
+  resolved "https://registry.yarnpkg.com/razzle/-/razzle-4.0.1-canary.11.tgz#737783feae9b43930391780a25df21882feaf596"
+  integrity sha512-nJCUJUvzvtBIfqb7wNS7nwSxDoIQ4iq6671vSIW3iMmNczSgDfy6Zj4NA6h/+RGSqf5rcs7rXf9X9x5ICEkr/Q==
   dependencies:
     "@babel/plugin-transform-modules-commonjs" "^7.12.1"
     "@pmmmwh/react-refresh-webpack-plugin" "0.4.3"
@@ -7341,7 +7318,7 @@ razzle@^4.0.1-canary.10:
     postcss-load-config "3.0.0"
     postcss-loader "4.2.0"
     process "0.11.10"
-    razzle-start-server-webpack-plugin "4.0.1-canary.10"
+    razzle-start-server-webpack-plugin "4.0.1-canary.11"
     react-dev-utils "10.2.1"
     react-refresh "0.9.0"
     resolve "1.17.0"

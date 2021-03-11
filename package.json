@@ -1,16 +1,18 @@
 {
   "name": "classtimes-frontend-razzle",
-  "version": "4.0.1-canary.10",
-  "license": "MIT",
+  "version": "1.0",
+  "license": "Copyright ClassTimes 2021",
   "engines": {
     "node": "^15.11.0"
   },
   "scripts": {
     "export": "razzle export",
+    "prestart:prod": "yarn build",
     "start": "razzle start",
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
-    "start:prod": "NODE_ENV=production node build/server.js"
+    "start:prod": "NODE_ENV=production node build/server.js",
+    "deploy": "git push heroku master"
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",
@@ -21,7 +23,6 @@
     "graphology-components": "^1.1.0",
     "graphql": "^15.5.0",
     "interval-tree-type": "^1.0.1",
-    "razzle-heroku": "^3.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -33,14 +34,14 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
     "babel-plugin-styled-components": "^1.12.0",
-    "babel-preset-razzle": "4.0.1-canary.10",
+    "babel-preset-razzle": "4.0.1-canary.11",
     "graphology-types": "^0.19.2",
     "html-webpack-plugin": "5.2.0",
     "jest-styled-components": "^7.0.3",
     "mini-css-extract-plugin": "^0.9.0",
     "postcss": "8.2.4",
-    "razzle": "^4.0.1-canary.10",
-    "razzle-dev-utils": "^4.0.1-canary.10",
+    "razzle": "^4.0.1-canary.11",
+    "razzle-dev-utils": "^4.0.1-canary.11",
     "typescript-plugin-styled-components": "^1.4.4",
     "webpack": "5.24.0",
     "webpack-dev-server": "^3.11.2"

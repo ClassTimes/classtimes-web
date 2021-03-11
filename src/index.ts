@@ -20,7 +20,7 @@ console.log("env info:", process.env.PORT)
 
 export default express()
   .use((req, res) => app.handle(req, res))
-  .listen(port, "0.0.0.0", function (err) {
+  .listen(port, function (err) {
     if (err) {
       console.error(err)
       return
