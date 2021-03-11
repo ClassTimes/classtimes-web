@@ -8,7 +8,12 @@ class Home extends React.Component {
     return (
       <Main>
         <h2>
-          <img src={LOGO} alt="ClassTimes Logo" title="ClassTimes" />
+          <img
+            src={LOGO}
+            alt="ClassTimes Logo"
+            title="ClassTimes"
+            height={112}
+          />
         </h2>
         <h3>Follow your school classes</h3>
       </Main>
