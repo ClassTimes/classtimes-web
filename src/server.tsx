@@ -83,7 +83,8 @@ const favicons = [
   '<meta name="msapplication-TileImage" content="/mstile-144x144.png">',
   '<meta name="msapplication-config" content="/browserconfig.xml">',
   '<link rel="yandex-tableau-widget" href="/yandex-browser-manifest.json">',
-].map((a) => a.replace(`href="`, `href="${process.env.PUBLIC_PATH}`))
+]
+//.map((a) => a.replace(`href="`, `href="${process.env.PUBLIC_PATH}`))
 
 // console.log({ env: process.env })
 
