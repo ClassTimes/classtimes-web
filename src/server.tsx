@@ -32,7 +32,7 @@ import App from "./App"
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
-console.log({ assets: JSON.stringify(assets, null, 2) })
+// console.log({ assets: JSON.stringify(assets, null, 2) })
 const favicons = [
   '<link rel="shortcut icon" href="favicon.ico">',
   '<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">',
