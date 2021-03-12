@@ -17,6 +17,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.11",
     "axios": "^0.21.1",
+    "cross-fetch": "^3.0.6",
     "dayjs": "^1.10.4",
     "express": "^4.17.1",
     "graphology": "^0.19.3",
@@ -36,6 +37,8 @@
     "@types/styled-components": "^5.1.7",
     "babel-plugin-styled-components": "^1.12.0",
     "babel-preset-razzle": "4.0.1-canary.11",
+    "favicons": "^6.2.1",
+    "favicons-webpack-plugin": "^5.0.2",
     "graphology-types": "^0.19.2",
     "html-webpack-plugin": "5.2.0",
     "jest-styled-components": "^7.0.3",
