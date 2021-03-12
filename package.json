@@ -12,7 +12,8 @@
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
     "start:prod": "NODE_ENV=production node build/server.js",
-    "deploy": "git push heroku master"
+    "deploy": "git push heroku master",
+    "favicons:generate": "node scripts/generate_favicons.js"
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",
