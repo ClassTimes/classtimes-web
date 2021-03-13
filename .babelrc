@@ -3,8 +3,11 @@
     "razzle/babel" // NEEDED
   ],
   "plugins": [
+    "graphql-tag",
+    "import-graphql",
     [
       "babel-plugin-styled-components",
+
       {
         "fileName": false,
         "displayName": true,

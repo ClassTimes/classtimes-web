@@ -6,6 +6,7 @@ import { connectedComponents } from "graphology-components"
 
 import { TEventTree } from "../types"
 import { GetAllEvents_events } from "../types/GetAllEvents"
+import { isClient } from "../../config"
 
 const generateTimes = (selectedDate: Dayjs) => {
   const times = Array(24)
@@ -209,13 +210,15 @@ const WeekViewBody: React.FC<IWeekViewBody> = (props) => {
 
   const weekViewBodyWrapperRef = React.useRef<HTMLDivElement>()
 
-  React.useLayoutEffect(() => {
-    if (startAtHour && weekViewBodyWrapperRef.current) {
-      const startPercent = startAtHour / 24
-      const scrollHeight = weekViewBodyWrapperRef.current.scrollHeight
-      weekViewBodyWrapperRef.current.scrollTop = scrollHeight * startPercent
-    }
-  }, [])
+  if (isClient) {
+    React.useLayoutEffect(() => {
+      if (startAtHour && weekViewBodyWrapperRef.current) {
+        const startPercent = startAtHour / 24
+        const scrollHeight = weekViewBodyWrapperRef.current.scrollHeight
+        weekViewBodyWrapperRef.current.scrollTop = scrollHeight * startPercent
+      }
+    }, [])
+  }
 
   return (
     <WeekViewBodyWrapper ref={weekViewBodyWrapperRef}>

@@ -8,6 +8,7 @@
   "scripts": {
     "export": "razzle export",
     "prestart:prod": "yarn build",
+    "prestart": "rm -rf ./node_modules/.cache/babel-loader",
     "start": "razzle start",
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
@@ -37,6 +38,8 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
     "@types/styled-components": "^5.1.7",
+    "babel-plugin-graphql-tag": "^3.2.0",
+    "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-styled-components": "^1.12.0",
     "babel-preset-razzle": "4.0.1-canary.11",
     "favicons": "^6.2.1",
