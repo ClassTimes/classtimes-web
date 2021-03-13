@@ -8,7 +8,7 @@ import {
 
 import { isClient } from "../config"
 
-const GQL_SERVER_URI = "https://api.classtimes.app"
+const GQL_SERVER_URI = "https://api.classtimes.app/graphql"
 
 const config = isClient
   ? {
