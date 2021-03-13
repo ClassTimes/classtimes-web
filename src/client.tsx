@@ -2,12 +2,16 @@ import * as React from "react"
 import { BrowserRouter } from "react-router-dom"
 import { hydrate } from "react-dom"
 
+import { ApolloProvider } from "./network/Apollo"
+
 import App from "./App"
 
 hydrate(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <ApolloProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ApolloProvider>,
   document.getElementById("root")
 )
 
