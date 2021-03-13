@@ -4,8 +4,8 @@ import dayjs, { Dayjs } from "dayjs"
 import Graph from "graphology"
 import { connectedComponents } from "graphology-components"
 
-import { TEventTree } from "../types"
-import { GetAllEvents_events } from "../types/GetAllEvents"
+import { TEventTree } from "../../types"
+import { GetAllEvents_events } from "../../types/GetAllEvents"
 import { isClient } from "../../config"
 
 const generateTimes = (selectedDate: Dayjs) => {

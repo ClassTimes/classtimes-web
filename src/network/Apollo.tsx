@@ -8,7 +8,7 @@ import {
 
 import { isClient } from "../config"
 
-const GQL_SERVER_URI = "https://classtimes.herokuapp.com/graphql"
+const GQL_SERVER_URI = "https://api.classtimes.app"
 
 const config = isClient
   ? {
