@@ -15,14 +15,14 @@ import {
   // rrulestr
 } from "rrule"
 
-import { GetAllEvents } from "../types/GetAllEvents"
+import { GetAllEvents } from "../../types/GetAllEvents"
 import {
   TEventTree,
   // IEventTreeQueryInterval,
   // IEventTreeGeneratorReturn,
   // TEventGenerator,
   TEventGeneratorTyped,
-} from "../types"
+} from "../../types"
 import { WeekView } from "./WeekView"
 
 dayjs.extend(duration)
@@ -116,9 +116,7 @@ export const Calendar: React.FC<ICalendar> = (props) => {
       <CalendarTimezone className="time-zone">
         <select defaultValue={timezone}>
           <option value={timezone}>{timezone}</option>
-          <option value={timezone} disabled>
-            TODO Add Timezones
-          </option>
+          <option disabled>TODO Add Timezones</option>
         </select>
       </CalendarTimezone>
       <WeekView
@@ -143,7 +141,10 @@ const valuesEqual = (a: any, b: any) => true
 
 // import { RRule, RRuleSet, rrulestr } from 'rrule'
 
-const eventTreeGenerator: TEventGeneratorTyped = (events, recurrenceRange) => {
+export const eventTreeGenerator: TEventGeneratorTyped = (
+  events,
+  recurrenceRange
+) => {
   const tree = new IntervalTree(valuesEqual)
 
   if (events) {

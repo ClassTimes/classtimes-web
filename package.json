@@ -14,7 +14,9 @@
     "test": "razzle test --env=jsdom",
     "start:prod": "NODE_ENV=production node build/server.js",
     "deploy": "git push heroku master",
-    "favicons:generate": "node scripts/generate_favicons.js"
+    "favicons:generate": "node scripts/generate_favicons.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",
@@ -34,10 +36,17 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/react": "^6.1.21",
+    "@testing-library/react": "^11.2.5",
     "@types/express": "^4.17.11",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
     "@types/styled-components": "^5.1.7",
+    "babel-loader": "^8.2.2",
     "babel-plugin-graphql-tag": "^3.2.0",
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-styled-components": "^1.12.0",
