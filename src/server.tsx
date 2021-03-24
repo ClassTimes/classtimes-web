@@ -43,7 +43,7 @@ export function generateHtml(props) {
             <head>
               <meta http-equiv="X-UA-Compatible" content="IE=edge" />
               <meta char-set="utf-8" />
-              <title>ClassTimes</title>
+              <title>Classtimes</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               ${FAVICONS.join("\n")}
               ${cssLinksFromAssets(assets, "client")}

@@ -5,8 +5,8 @@ export const FAVICONS = [
   '<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">',
   '<link rel="manifest" href="/site.webmanifest">',
   '<link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#2825A6">',
-  '<meta name="apple-mobile-web-app-title" content="ClassTimes">',
-  '<meta name="application-name" content="ClassTimes">',
+  '<meta name="apple-mobile-web-app-title" content="Classtimes">',
+  '<meta name="application-name" content="Classtimes">',
   '<meta name="msapplication-TileColor" content="#ffffff">',
   '<meta name="theme-color" content="#ffffff">',
 ]

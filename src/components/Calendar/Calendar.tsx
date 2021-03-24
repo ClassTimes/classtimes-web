@@ -36,7 +36,7 @@ dayjs.extend(timezone)
 
 const ALL_EVENTS = gql`
   query GetAllEvents {
-    events(filters: null) {
+    calendarEvents(filters: null) {
       _id
       title
       isAllDay
@@ -278,8 +278,8 @@ export const eventTreeGenerator: TEventGeneratorTyped = (
 export const CalendarWithData = () => {
   const { loading, error, data } = useQuery<GetAllEvents>(ALL_EVENTS)
 
-  const title = data?.events?.[0]?.calendar?.name
-  const events = data?.events
+  const title = data?.calendarEvents?.[0]?.calendar?.name
+  const events = data?.calendarEvents
 
   const eventTreeCallback = React.useCallback(
     (range: [Dayjs, Dayjs]) => {
