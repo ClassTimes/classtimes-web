@@ -35,19 +35,27 @@ dayjs.extend(timezone)
 //dayjs.locale('en')
 
 const ALL_EVENTS = gql`
-  query GetAllEvents {
-    calendarEvents(filters: null) {
-      _id
-      title
-      isAllDay
-      durationHours
-      startDateUtc
-      endDateUtc
-      rrule
-      exceptionsDatesUtc
-      calendar(populate: true) {
-        _id
-        name
+  query getAllEvents {
+    listCalendarEvents(filters: null, first: 2) {
+      edges {
+        node {
+          _id
+          title
+          isAllDay
+          durationHours
+          startDateUtc
+          endDateUtc
+          rrule
+          exceptionsDatesUtc
+          subject {
+            name
+          }
+        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
       }
     }
   }
@@ -276,10 +284,13 @@ export const eventTreeGenerator: TEventGeneratorTyped = (
 }
 
 export const CalendarWithData = () => {
+  // TODO: Handle unauthorized?
   const { loading, error, data } = useQuery<GetAllEvents>(ALL_EVENTS)
 
-  const title = data?.calendarEvents?.[0]?.calendar?.name
-  const events = data?.calendarEvents
+  const calendarEventEdges = data?.listCalendarEvents?.edges
+
+  const title = calendarEventEdges?.[0]?.node?.subject?.name // Placeholder!
+  const events = calendarEventEdges?.map((edge) => edge.node)
 
   const eventTreeCallback = React.useCallback(
     (range: [Dayjs, Dayjs]) => {

@@ -9,7 +9,10 @@ import { setContext } from "@apollo/client/link/context"
 
 import { isClient } from "../config"
 
-const GQL_SERVER_URI = "https://api.classtimes.app/graphql"
+const GQL_SERVER_URI =
+  process.env.NODE_ENV === "production"
+    ? "https://api.classtimes.app/graphql"
+    : "http://localhost:5000/graphql"
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -36,7 +39,8 @@ const config = isClient
         createHttpLink({
           fetch,
           uri: GQL_SERVER_URI,
-          credentials: "same-origin",
+          credentials:
+            process.env.NODE_ENV === "production" ? "same-origin" : "include",
           headers: {
             //   cookie: req.header("Cookie"),
           },
