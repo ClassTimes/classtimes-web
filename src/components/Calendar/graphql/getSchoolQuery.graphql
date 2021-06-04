@@ -1,0 +1,13 @@
+query getSchoolQuery($_id: ID!) {
+  school(_id: $_id) {
+    name
+    subjectsConnection {
+      edges {
+        node {
+          _id
+          name
+        }
+      }
+    }
+  }
+}

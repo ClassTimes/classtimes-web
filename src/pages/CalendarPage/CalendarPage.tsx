@@ -1,9 +1,15 @@
+import * as React from "react"
 import { CalendarWithData } from "../../components/Calendar"
+
+// Layout
+import { CalendarLayout } from "../../layouts/CalendarLayout"
 
 export function Page() {
   return (
     <div className="App">
-      <CalendarWithData />
+      <CalendarLayout>
+        <CalendarWithData />
+      </CalendarLayout>
     </div>
   )
 }
