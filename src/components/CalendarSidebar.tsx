@@ -11,6 +11,22 @@ import { VerticalAccordion } from "./VerticalAccordion"
 // Queries
 import GET_SCHOOL_QUERY from "./Calendar/graphql/getSchoolQuery.graphql"
 
+// Types
+import { IConnection } from "../types/Connection"
+
+// Helpers
+import mapEdges from "../helpers/mapEdges"
+
+interface ICareer {
+  name?: string
+  subjectsConnection?: IConnection<ISubject>
+}
+
+interface ISubject {
+  _id?: string
+  name?: string
+}
+
 export const CalendarSidebar = () => {
   const { loading, error, data } = useQuery(GET_SCHOOL_QUERY, {
     variables: { _id: "607a4bfc1c2f030cfa277157" }, // TODO: Placeholder for now
@@ -18,20 +34,26 @@ export const CalendarSidebar = () => {
 
   // TODO: Handle errors
   const school = data?.school
-  const subjectsConnection = school?.subjectsConnection
-  const subjects = subjectsConnection?.edges?.map((edge) => edge.node) || []
+
+  const careersConnection: IConnection<ICareer> = school?.careersConnection
+  const careers = mapEdges(careersConnection?.edges)
 
   return (
     <SidebarWrapper>
-      {/* <Link to="/"> */}
       <Logo height={70} />
-      {/* </Link> */}
       <CalendarTitle title={school?.name} />
-      <VerticalAccordion title="Dummy Career">
-        {subjects.map((subject) => (
-          <p>{subject.name}</p>
-        ))}
-      </VerticalAccordion>
+      {careers.map((career) => {
+        const { name, subjectsConnection }: ICareer = career
+        const subjects = mapEdges(subjectsConnection?.edges)
+
+        return (
+          <VerticalAccordion title={name}>
+            {subjects.map((subject) => (
+              <p>{subject.name}</p>
+            ))}
+          </VerticalAccordion>
+        )
+      })}
     </SidebarWrapper>
   )
 }

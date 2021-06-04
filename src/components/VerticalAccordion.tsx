@@ -50,7 +50,6 @@ const Arrow = styled.div<IVisibilityProps>`
   align-items: center;
   transform: rotate(${(props) => (props.visible ? "180deg" : "0deg")});
   transform-origin: center center;
-  /* transition: all 0.1s linear; */
 `
 
 const Dropdown = styled.div<IVisibilityProps>`

@@ -1,11 +1,6 @@
-// TODO: Testing!!
+import { IEdge } from "../types/Connection"
 
-interface edge<T> {
-  node: T
-  cursor: string
-}
-
-const mapEdges = <T extends unknown>(edges: edge<T>[]): T[] => {
+const mapEdges = <T extends unknown>(edges: IEdge<T>[]): T[] => {
   return edges.map((edge) => edge.node)
 }
 
