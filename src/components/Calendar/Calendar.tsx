@@ -29,7 +29,7 @@ import { WeekView } from "./WeekView"
 import LIST_CALENDAR_EVENTS_QUERY from "./graphql/listCalendarEventsQuery.graphql"
 
 // Helpers
-import mapEdges from "../../helpers/mapEdges"
+import { mapEdges } from "../../helpers/mapEdges"
 
 dayjs.extend(duration)
 dayjs.extend(localeData)

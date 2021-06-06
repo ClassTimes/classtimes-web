@@ -5,7 +5,7 @@ interface ICalendarTitleProps {
   title: string
 }
 
-export const CalendarTitle = (props: ICalendarTitleProps) => {
+export const CalendarTitle: React.FC<ICalendarTitleProps> = (props) => {
   const { title } = props
 
   return (

@@ -7,7 +7,7 @@ interface IVerticalAccordionProps {
   children: JSX.Element[] | JSX.Element
 }
 
-export const VerticalAccordion = (props: IVerticalAccordionProps) => {
+export const VerticalAccordion: React.FC<IVerticalAccordionProps> = (props) => {
   const { title, children } = props
 
   const [visible, setVisible] = React.useState(false)
@@ -37,10 +37,10 @@ interface IVisibilityProps {
 
 const AccordionWrapper = styled.div`
   border-radius: 5px;
-  padding: 5px 10px;
-  transition: background 0.1s linear;
+  padding: 5px 15px;
+  transition: all 0.15s linear;
   &:hover {
-    background-color: #eee;
+    box-shadow: 0 1px 4px 0 #666;
   }
 `
 
@@ -54,7 +54,7 @@ const Arrow = styled.div<IVisibilityProps>`
 
 const Dropdown = styled.div<IVisibilityProps>`
   display: ${(props) => (props.visible ? undefined : "none")};
-  user-select: none;
+  /* user-select: none; */
 `
 
 const DropdownToggle = styled.div`

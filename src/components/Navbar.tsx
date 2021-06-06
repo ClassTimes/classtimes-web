@@ -4,7 +4,7 @@ import styled from "styled-components"
 // Components
 import { Button } from "../components/Button"
 
-export const Navbar = () => {
+export const Navbar: React.FC = () => {
   return (
     <NavbarWrapper>
       <Button href="#">Registrarse</Button>

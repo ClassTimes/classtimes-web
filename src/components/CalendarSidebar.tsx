@@ -1,55 +1,58 @@
 import * as React from "react"
 import styled from "styled-components"
-import { useQuery } from "@apollo/client"
 // import { Link } from "react-router"
+
+// Hooks
+import { useSchoolCalendar } from "../pages/CalendarPage/SchoolCalendarContext"
 
 // Components
 import { CalendarTitle } from "./CalendarTitle"
 import { Logo } from "./Logo"
 import { VerticalAccordion } from "./VerticalAccordion"
-
-// Queries
-import GET_SCHOOL_QUERY from "./Calendar/graphql/getSchoolQuery.graphql"
+import { ItemToggle } from "./ItemToggle"
 
 // Types
-import { IConnection } from "../types/Connection"
+import { ICareer } from "../types/Career"
+import { ISubject } from "../types/Subject"
 
 // Helpers
-import mapEdges from "../helpers/mapEdges"
+import { deepClone } from "../helpers/deepClone"
+import { mapEdges } from "../helpers/mapEdges"
 
-interface ICareer {
-  name?: string
-  subjectsConnection?: IConnection<ISubject>
-}
+export const CalendarSidebar: React.FC = () => {
+  const { school, setSchool } = useSchoolCalendar()
 
-interface ISubject {
-  _id?: string
-  name?: string
-}
+  const toggleSubject = (careerIndex: number, subjectIndex: number) => {
+    const updatedSchool = deepClone(school)
+    const updatedCareerEdges = updatedSchool?.careersConnection?.edges
+    const updatedSubjectEdges =
+      updatedCareerEdges[careerIndex]?.node?.subjectsConnection?.edges
+    const updatedSubject = updatedSubjectEdges[subjectIndex]?.node
+    updatedSubject.toggled = !updatedSubject?.toggled
 
-export const CalendarSidebar = () => {
-  const { loading, error, data } = useQuery(GET_SCHOOL_QUERY, {
-    variables: { _id: "607a4bfc1c2f030cfa277157" }, // TODO: Placeholder for now
-  })
+    setSchool(updatedSchool)
+  }
 
-  // TODO: Handle errors
-  const school = data?.school
-
-  const careersConnection: IConnection<ICareer> = school?.careersConnection
-  const careers = mapEdges(careersConnection?.edges)
+  const careers = mapEdges(school?.careersConnection?.edges)
 
   return (
     <SidebarWrapper>
       <Logo height={70} />
       <CalendarTitle title={school?.name} />
-      {careers.map((career) => {
+      {careers.map((career, cIndex) => {
         const { name, subjectsConnection }: ICareer = career
-        const subjects = mapEdges(subjectsConnection?.edges)
+        const subjects: ISubject[] = mapEdges(subjectsConnection?.edges)
 
         return (
           <VerticalAccordion title={name}>
-            {subjects.map((subject) => (
-              <p>{subject.name}</p>
+            {subjects?.map((subject, sIndex) => (
+              <ItemToggle
+                text={subject.name}
+                toggled={subject.toggled}
+                setToggled={() => {
+                  toggleSubject(cIndex, sIndex)
+                }}
+              />
             ))}
           </VerticalAccordion>
         )
@@ -64,5 +67,5 @@ const SidebarWrapper = styled.div`
   height: 100vh;
   background-color: #fff;
   grid-row: span 2;
-  padding: 25px 15px;
+  padding: 25px 10px;
 `

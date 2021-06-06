@@ -6,10 +6,10 @@ import { Navbar } from "../components/Navbar"
 import { CalendarSidebar } from "../components/CalendarSidebar"
 
 interface ICalendarLayoutProps {
-  children: JSX.Element[]
+  children: JSX.Element[] | JSX.Element
 }
 
-export const CalendarLayout = (props: ICalendarLayoutProps) => {
+export const CalendarLayout: React.FC<ICalendarLayoutProps> = (props) => {
   const { children } = props
 
   return (
