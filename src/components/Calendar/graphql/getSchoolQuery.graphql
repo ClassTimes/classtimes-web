@@ -1,5 +1,5 @@
-query getSchoolQuery($_id: ID!) {
-  school(_id: $_id) {
+query getSchoolQuery($shortName: String!) {
+  school(shortName: $shortName) {
     name
     careersConnection {
       edges {

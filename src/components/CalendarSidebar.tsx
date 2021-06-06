@@ -39,7 +39,7 @@ export const CalendarSidebar: React.FC = () => {
     <SidebarWrapper>
       <Logo height={70} />
       <CalendarTitle title={school?.name} />
-      {careers.map((career, cIndex) => {
+      {careers?.map((career, cIndex) => {
         const { name, subjectsConnection }: ICareer = career
         const subjects: ISubject[] = mapEdges(subjectsConnection?.edges)
 

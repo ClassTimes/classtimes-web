@@ -1,5 +1,6 @@
 import * as React from "react"
-import { Calendar, CalendarWithData } from "../../components/Calendar"
+import { CalendarWithData } from "../../components/Calendar"
+import { useParams } from "react-router"
 import { useQuery } from "@apollo/client"
 
 // Helpers
@@ -15,14 +16,16 @@ import { SchoolCalendarContext } from "./SchoolCalendarContext"
 import GET_SCHOOL_QUERY from "../../components/Calendar/graphql/getSchoolQuery.graphql"
 
 export function Page() {
+  const { schoolShortName } = useParams()
   const { loading, error, data } = useQuery(GET_SCHOOL_QUERY, {
-    variables: { _id: "607a4bfc1c2f030cfa277157" }, // TODO: Placeholder for now
+    variables: { shortName: schoolShortName },
   })
 
-  const schoolRawData = data?.school
   /* Preprocessing step to add state variables to school object */
+  const schoolRawData = data?.school
   const schoolInitialValue = addStateVariablesToSchool(schoolRawData)
 
+  /* Set school as state for Context */
   const [school, setSchool] = React.useState(schoolInitialValue)
 
   return (
