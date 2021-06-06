@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import styled, { createGlobalStyle } from "styled-components"
 import dayjs, { Dayjs } from "dayjs"
 import localeData from "dayjs/plugin/localeData"
@@ -7,7 +7,7 @@ import localizedFormat from "dayjs/plugin/localizedFormat"
 import weekday from "dayjs/plugin/weekday"
 import timezone from "dayjs/plugin/timezone"
 import utc from "dayjs/plugin/utc"
-import { useQuery, gql } from "@apollo/client"
+import { useQuery } from "@apollo/client"
 import IntervalTree from "interval-tree-type"
 import {
   RRule,
@@ -25,6 +25,12 @@ import {
 } from "../../types"
 import { WeekView } from "./WeekView"
 
+// Queries
+import LIST_CALENDAR_EVENTS_QUERY from "./graphql/listCalendarEventsQuery.graphql"
+
+// Helpers
+import { mapEdges } from "../../helpers/mapEdges"
+
 dayjs.extend(duration)
 dayjs.extend(localeData)
 dayjs.extend(localizedFormat)
@@ -33,34 +39,6 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 
 //dayjs.locale('en')
-
-const ALL_EVENTS = gql`
-  query getAllEvents {
-    listCalendarEvents(filters: null, first: 2) {
-      edges {
-        node {
-          _id
-          title
-          isAllDay
-          durationHours
-          startDateUtc
-          endDateUtc
-          rrule
-          exceptionsDatesUtc
-          subject {
-            name
-          }
-        }
-        cursor
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-    }
-  }
-`
-
 interface ICalendar {
   startAtHour?: number
   title?: React.ReactNode
@@ -90,10 +68,7 @@ const generateWeekdays = (selectedDate: Dayjs) => {
 const generateNow = () => {
   const now = dayjs()
   // dayjs.localeData/().weekdays()
-
-  // const week = dayjs.duration({ weeks: 1 }).days()
-  // const day =
-  return { now } //JSON.stringify(week)
+  return { now }
 }
 
 export const Calendar: React.FC<ICalendar> = (props) => {
@@ -284,13 +259,16 @@ export const eventTreeGenerator: TEventGeneratorTyped = (
 }
 
 export const CalendarWithData = () => {
-  // TODO: Handle unauthorized?
-  const { loading, error, data } = useQuery<GetAllEvents>(ALL_EVENTS)
+  const { loading, error, data } = useQuery<GetAllEvents>(
+    LIST_CALENDAR_EVENTS_QUERY,
+    { variables: { filters: null, first: 5 } }
+  )
 
   const calendarEventEdges = data?.listCalendarEvents?.edges
 
   const title = calendarEventEdges?.[0]?.node?.subject?.name // Placeholder!
   const events = calendarEventEdges?.map((edge) => edge.node)
+  // const events = mapEdges(calendarEventEdges)
 
   const eventTreeCallback = React.useCallback(
     (range: [Dayjs, Dayjs]) => {
