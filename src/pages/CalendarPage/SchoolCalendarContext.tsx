@@ -1,11 +1,19 @@
 import * as React from "react"
 
+// Types
+import { ICalendarEvent } from "../../types/CalendarEvent"
+import { ICareer } from "../../types/Career"
+import { ISchool } from "../../types/School"
 interface IDefaultValue {
-  school: any
-  setSchool: React.Dispatch<any>
+  calendarEvents?: ICalendarEvent[]
+  careers?: ICareer[]
+  school?: ISchool
+  setSchool?: React.Dispatch<ISchool>
 }
 
-const defaultValue = {
+const defaultValue: IDefaultValue = {
+  calendarEvents: undefined,
+  careers: undefined,
   school: undefined,
   setSchool: undefined,
 }

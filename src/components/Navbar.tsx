@@ -13,7 +13,7 @@ export const Navbar: React.FC = () => {
   )
 }
 
-const NavbarWrapper = styled.header`
+const NavbarWrapper = styled.nav`
   background-color: #fff;
   display: flex;
   flex-direction: row-reverse;

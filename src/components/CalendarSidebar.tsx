@@ -20,7 +20,7 @@ import { deepClone } from "../helpers/deepClone"
 import { mapEdges } from "../helpers/mapEdges"
 
 export const CalendarSidebar: React.FC = () => {
-  const { school, setSchool } = useSchoolCalendar()
+  const { careers, school, setSchool } = useSchoolCalendar()
 
   const toggleSubject = (careerIndex: number, subjectIndex: number) => {
     const updatedSchool = deepClone(school)
@@ -32,8 +32,6 @@ export const CalendarSidebar: React.FC = () => {
 
     setSchool(updatedSchool)
   }
-
-  const careers = mapEdges(school?.careersConnection?.edges)
 
   return (
     <SidebarWrapper>

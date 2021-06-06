@@ -25,6 +25,9 @@ import {
 } from "../../types"
 import { WeekView } from "./WeekView"
 
+// Hooks
+import { useSchoolCalendar } from "../../pages/CalendarPage/SchoolCalendarContext"
+
 // Queries
 import LIST_CALENDAR_EVENTS_QUERY from "./graphql/listCalendarEventsQuery.graphql"
 
@@ -41,7 +44,7 @@ dayjs.extend(timezone)
 //dayjs.locale('en')
 interface ICalendar {
   startAtHour?: number
-  title?: React.ReactNode
+  showHoursCount?: number
   eventTreeCallback: (range: [Dayjs, Dayjs]) => TEventTree
 }
 
@@ -72,7 +75,7 @@ const generateNow = () => {
 }
 
 export const Calendar: React.FC<ICalendar> = (props) => {
-  const { eventTreeCallback, title, startAtHour } = props
+  const { eventTreeCallback, startAtHour } = props
   const [timezone, setTimezone] = React.useState(() => dayjs.tz.guess())
   const { now } = generateNow()
   const [selectedDate, setSelectedDate] = React.useState(now)
@@ -92,7 +95,6 @@ export const Calendar: React.FC<ICalendar> = (props) => {
   return (
     <CalendarWrapper>
       <GlobalStyles />
-      {title && <CalendarTitle className="title">{title}</CalendarTitle>}
       <CalendarSubtitle className="subtitle">
         {selectedDate.format("MMMM YYYY")}
       </CalendarSubtitle>
@@ -203,15 +205,6 @@ export const eventTreeGenerator: TEventGeneratorTyped = (
               value: clonedEventEnd.toISOString(),
             },
           })
-          console.log("clonedEvent", {
-            ruleDate,
-            clonedEvent,
-            // sd: clonedEvent.startDateUtc
-          })
-          // clonedEvent.endDateUtc = clonedEvent.startDateUtc.add(
-          //   clonedEvent.durationHours,
-          //   "hours"
-          // )
           tree.insert(
             clonedEvent._startDateUtc,
             clonedEvent._endDateUtc,
@@ -220,33 +213,7 @@ export const eventTreeGenerator: TEventGeneratorTyped = (
           // clonedEvent.startDateUtc = clonedEvent.startDateUtc
           // clonedEvent.endDateUtc = clonedEvent.endDateUtc.format()
         }
-
-        console.log({ rule, ruleQuery })
-
-        //  .fromString(
-        //   "DTSTART;TZID=America/Denver:20181101T190000;\n"
-        //   + "RRULE:FREQ=WEEKLY;BYDAY=MO,WE,TH;INTERVAL=1;COUNT=3"
-        // )
-        // const rule = RRule.fromString(
-        //   "DTSTART;TZID=America/Denver:20181101T190000;\n"
-        //   + "RRULE:FREQ=WEEKLY;BYDAY=MO,WE,TH;INTERVAL=1;COUNT=3"
-        // )
-        // // Create a rule:
-        // const rule = new RRule({
-        //   freq: RRule.WEEKLY,
-        //   interval: 5,
-        //   byweekday: [RRule.MO, RRule.FR],
-        //   dtstart: new Date(Date.UTC(2012, 1, 1, 10, 30)),
-        //   until: new Date(Date.UTC(2012, 12, 31))
-        // })
       }
-      // start.valueOf()
-      // console.log("Adding event to tree", {
-      //   start,
-      //   end,
-      //   startValueOf: start.valueOf(),
-      //   endValueOf: end.valueOf()
-      // })
     }
 
     return {
@@ -259,24 +226,15 @@ export const eventTreeGenerator: TEventGeneratorTyped = (
 }
 
 export const CalendarWithData = () => {
-  const { loading, error, data } = useQuery<GetAllEvents>(
-    LIST_CALENDAR_EVENTS_QUERY,
-    { variables: { filters: null, first: 5 } }
-  )
-
-  const calendarEventEdges = data?.listCalendarEvents?.edges
-
-  const title = calendarEventEdges?.[0]?.node?.subject?.name // Placeholder!
-  const events = calendarEventEdges?.map((edge) => edge.node)
-  // const events = mapEdges(calendarEventEdges)
+  const { calendarEvents } = useSchoolCalendar()
 
   const eventTreeCallback = React.useCallback(
     (range: [Dayjs, Dayjs]) => {
-      const result = eventTreeGenerator(events, range)
+      const result = eventTreeGenerator(calendarEvents, range)
       console.log("save eventTree", result)
       return result
     },
-    [data, events]
+    [calendarEvents]
   )
 
   // if (eventTree) {
@@ -293,7 +251,7 @@ export const CalendarWithData = () => {
       <Calendar
         startAtHour={5.8}
         showHoursCount={10}
-        {...{ title, eventTreeCallback }}
+        {...{ eventTreeCallback }}
       />
       {/* <Pre>
         loading: {loading ? "loading..." : "loaded"} <br />
@@ -305,14 +263,13 @@ export const CalendarWithData = () => {
 }
 
 const CalendarWrapper = styled.div`
-  border: 1px solid black;
+  height: 100%;
 `
 
 const Pre = styled.pre`
   text-align: left;
 `
 
-const CalendarTitle = styled.h2``
 const CalendarSubtitle = styled.div``
 const CalendarTimezone = styled.div``
 
